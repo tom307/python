@@ -1,0 +1,637 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*- 
+import os
+import time
+print '\033[1;33;40m --------------------------------\033[0m'
+print '\033[1;32;40m 微信业务--程序更新系统 BY 冯广军 \033[0m'
+print '\033[1;33;40m --------------------------------\033[0m'
+nu = raw_input("\033[1;32;40m 按 1  增量更新（重启Tomcat）\n 按 2  增量更新（不重启Tomcat)\n 按 3  全量更新（重启Tomcat)\n 按 4  回滚\n 按 5  备份当前工程\n 按 6  重启Tomcat\n 按 7  杀死所有Tomcat\n 按 8  查看Tomcat日志\n 按 9  扩集群到->40套\n 按 10 重启扩展的30套Tomcat\n 按 11 查看扩展的30套Tomcat日志\n 按 12 缩集群到->10套\n 按 13 退出该程序\n 请输入您的选择:\033[0m" ).strip()
+if nu == '1':
+	os.system("cd /home/weixin-yewu/updata/updata-temp && rz")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("cd /home/weixin-yewu/updata/updata-temp && unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/webapps /home/weixin-yewu/updata/updata-temp/ROOT* && mv ROOT* ROOT-updata-$(date '+%Y-%m-%d-%H-%M').zip && mv ROOT* /home/weixin-yewu/updata/updata-back")
+	os.system("cd /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps && zip -r ROOT-BAK-$(date '+%Y-%m-%d-%H-%M').zip ROOT && mv ROOT-BAK* /home/weixin-yewu/updata/ROOT-back")
+	os.system("kill -9 $(ps -ef|grep weixin-lnlt-tomcat-7.0.55-900 |grep -v 'grep'|awk '{print $2}')")
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m -----------------------------\033[0m"
+	print"\033[1;32;40m 增量更新完毕（重启Tomcat完毕） \033[0m"
+	print"\033[1;33;40m -----------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"	
+	
+if nu == '2':
+	os.system("cd /home/weixin-yewu/updata/updata-temp && rz")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("cd /home/weixin-yewu/updata/updata-temp && unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/webapps /home/weixin-yewu/updata/updata-temp/ROOT* && mv ROOT* ROOT-updata-$(date '+%Y-%m-%d-%H-%M').zip && mv ROOT* /home/weixin-yewu/updata/updata-back")
+	os.system("cd /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps && zip -r ROOT-BAK-$(date '+%Y-%m-%d-%H-%M').zip ROOT && mv ROOT-BAK* /home/weixin-yewu/updata/ROOT-back")
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m -----------------------------\033[0m"
+	print"\033[1;32;40m 增量更新完毕（没有重启Tomcat）\033[0m"
+	print"\033[1;33;40m -----------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"	
+		
+elif nu == '3':
+	os.system("cd /home/weixin-yewu/updata/updata-temp && rz")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps/ROOT")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/webapps/ROOT")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/webapps/ROOT")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/webapps/ROOT")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/webapps/ROOT")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/webapps /home/weixin-yewu/updata/updata-temp/ROOT*")
+	os.system("cd /home/weixin-yewu/updata/updata-temp && unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/webapps /home/weixin-yewu/updata/updata-temp/ROOT* && mv ROOT* ROOT-updata-$(date '+%Y-%m-%d-%H-%M').zip && mv ROOT* /home/weixin-yewu/updata/updata-back")
+	os.system("cd /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps && zip -r ROOT-BAK-$(date '+%Y-%m-%d-%H-%M').zip ROOT && mv ROOT-BAK* /home/weixin-yewu/updata/ROOT-back")
+	os.system("kill -9 $(ps -ef|grep weixin-lnlt-tomcat-7.0.55-900 |grep -v 'grep'|awk '{print $2}')")
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m -----------------------------\033[0m"
+	print"\033[1;32;40m 全量更新完毕（重启Tomcat完毕） \033[0m"
+	print"\033[1;33;40m -----------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"	
+
+elif nu == '4':
+	os.system("ls /home/weixin-yewu/updata/ROOT-back")
+	rollback = raw_input("\033[1;32;40m 请输入要回滚到的日期(例如：ROOT-BAK-2016-03-21-17-03.zip):\033[0m").strip()
+	os.environ['rollback']=str(rollback)
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps/ROOT")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/webapps/ROOT")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/webapps/ROOT")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/webapps/ROOT")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/webapps/ROOT")
+	os.system("unzip /home/weixin-yewu/updata/ROOT-back/$rollback -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps")
+	os.system("unzip /home/weixin-yewu/updata/ROOT-back/$rollback -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/webapps")
+	os.system("unzip /home/weixin-yewu/updata/ROOT-back/$rollback -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/webapps")
+	os.system("unzip /home/weixin-yewu/updata/ROOT-back/$rollback -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/webapps")
+	os.system("unzip /home/weixin-yewu/updata/ROOT-back/$rollback -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/webapps")	
+	os.system("kill -9 $(ps -ef|grep weixin-lnlt-tomcat-7.0.55-900 |grep -v 'grep'|awk '{print $2}')")
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m -----------------------------\033[0m"
+	print"\033[1;32;40m           程序回滚完毕       \033[0m"
+	print"\033[1;33;40m -----------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"	
+	
+elif nu == '5':
+	os.system("cd /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps && zip -r ROOT-BAK-$(date '+%Y-%m-%d-%H-%M').zip ROOT && mv ROOT-BAK* /home/weixin-yewu/updata/ROOT-back")
+	print"\033[1;32;40m                                          \033[0m"
+	print"\033[1;33;40m --------------------\033[0m"	
+	print"\033[1;32;40m 当前版本工程备份完毕 \033[0m"
+	print"\033[1;33;40m --------------------\033[0m"
+	print"\033[1;32;40m                                          \033[0m"		
+	
+elif nu == '6':
+	os.system("kill -9 $(ps -ef|grep weixin-lnlt-tomcat-7.0.55-900 |grep -v 'grep'|awk '{print $2}')")
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	os.system("/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/bin/startup.sh")
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-正在启动...................... \033[0m"
+	os.system("sleep 10s")	
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/logs/catalina.out")
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-启动完毕 \033[0m"
+	print"\033[1;33;40m ---------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m ------------------\033[0m"
+	print"\033[1;32;40m 所有Tomcat重启完毕 \033[0m"
+	print"\033[1;33;40m ------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"	
+	
+elif nu == '7':
+	os.system("kill -9 $(ps -ef|grep weixin-lnlt-tomcat-7.0.55-900 |grep -v 'grep'|awk '{print $2}')")
+	print"\033[1;32;40m                                          \033[0m"
+	print"\033[1;33;40m --------------------\033[0m"
+	print"\033[1;32;40m 所有Tomcat已经被杀死\033[0m"
+	print"\033[1;33;40m --------------------\033[0m"
+	print"\033[1;32;40m                                          \033[0m"
+	
+elif nu == '8':
+	print"\033[1;32;40m ----------------日志开始打印---------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"	
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-的日志开始打印.........\033[0m"
+	os.system("sleep 3s")
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/logs/catalina.out")
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9000-日志打印完毕\033[0m"
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-的日志开始打印.........\033[0m"
+	os.system("sleep 10s")
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/logs/catalina.out")
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9001-日志打印完毕\033[0m"	
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-的日志开始打印.........\033[0m"
+	os.system("sleep 10s")
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/logs/catalina.out")
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9002-日志打印完毕\033[0m"
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-的日志开始打印.........\033[0m"
+	os.system("sleep 10s")
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/logs/catalina.out")
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9003-日志打印完毕\033[0m"
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-的日志开始打印.........\033[0m"
+	os.system("sleep 10s")
+	os.system("tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/logs/catalina.out")
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;32;40m weixin-lnlt-tomcat-7.0.55-9004-日志打印完毕\033[0m"
+	print"\033[1;33;40m -------------------------------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m ----------------------\033[0m"
+	print"\033[1;32;40m 所有Tomcat日志打印完毕 \033[0m"
+	print"\033[1;33;40m ----------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	
+elif nu =='9':
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9005/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9006/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9007/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9008/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9009/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9010/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9011/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9012/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9013/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9014/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9015/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9016/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9017/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9018/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9019/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9020/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9021/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9022/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9023/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9024/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9025/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9026/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9027/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9028/webapps/ROOT/*'")
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9029/webapps/ROOT/*'")
+	os.system("cd /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps && zip -r ROOT-BAK-$(date '+%Y-%m-%d-%H-%M').zip ROOT")
+	os.system("scp /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps/ROOT-BAK* updata@10.34.200.211:/home/weixin-yewu/updata/ROOT-temp")
+	os.system("rm -fr /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps/ROOT-BAK*")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9005/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9006/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9007/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9008/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9009/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9010/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9011/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9012/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9013/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9014/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9015/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9016/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9017/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9018/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9019/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9020/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9021/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9022/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9023/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9024/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9025/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9026/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9027/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9028/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")
+	os.system("ssh updata@10.34.200.211 'unzip -o -d /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9029/webapps /home/weixin-yewu/updata/ROOT-temp/ROOT-BAK*'")	
+	os.system("ssh updata@10.34.200.211 'rm -fr /home/weixin-yewu/updata/ROOT-temp/*'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/updata/killall-weixin-tomcat.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9005/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9006/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9007/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9008/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9009/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9010/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9011/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9012/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9013/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9014/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9015/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9016/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9017/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9018/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9019/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9020/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9021/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9022/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9023/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9024/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9025/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9026/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9027/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9028/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9029/bin/startup.sh'")
+	print '\033[1;33;40m                                 \033[0m'
+	print '\033[1;32;40m       日志开始打印.........\033[0m'
+	print '\033[1;33;40m                                 \033[0m'
+	os.system("sleep 10s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9005/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9006/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9007/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9008/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9009/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9010/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9011/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9012/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9013/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9014/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9015/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9016/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9017/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9018/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9019/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9020/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9021/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9022/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9023/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9024/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9025/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9026/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9027/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9028/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9029/logs/catalina.out'")	
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m ------------------\033[0m"
+	print"\033[1;32;40m 扩集群到->40套完毕\033[0m"
+	print"\033[1;33;40m ------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+	
+elif nu == '10':
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/updata/killall-weixin-tomcat.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9005/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9006/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9007/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9009/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9009/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9010/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9011/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9012/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9013/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9014/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9015/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9016/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9017/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9018/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9019/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9020/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9021/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9022/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9023/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9024/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9025/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9026/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9027/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9028/bin/startup.sh'")
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9029/bin/startup.sh'")
+	print '\033[1;33;40m                                 \033[0m'
+	print '\033[1;32;40m       日志开始打印.........\033[0m'
+	print '\033[1;33;40m                                 \033[0m'
+	os.system("sleep 10s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9005/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9006/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9007/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9008/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9009/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9010/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9011/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9012/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9013/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9014/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9015/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9016/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9017/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9018/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9019/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9020/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9021/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9022/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9023/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9024/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9025/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9026/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9027/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9028/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9029/logs/catalina.out'")	
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m ------------------\033[0m"
+	print"\033[1;32;40m 扩展的30套重启完毕\033[0m"
+	print"\033[1;33;40m ------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+		
+elif nu == '11':
+	print '\033[1;33;40m                                 \033[0m'
+	print '\033[1;32;40m       日志开始打印.........\033[0m'
+	print '\033[1;33;40m                                 \033[0m'
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9000/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9001/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9002/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9003/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9004/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9005/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9006/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9007/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9008/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9009/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9010/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9011/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9012/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9013/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9014/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9015/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9016/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9017/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9018/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9019/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9020/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9021/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9022/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9023/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9024/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9025/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9026/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9027/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9028/logs/catalina.out'")
+	os.system("sleep 3s")
+	os.system("ssh updata@10.34.200.211 'tail -n 500 /home/weixin-yewu/weixin-lnlt-tomcat-7.0.55-9029/logs/catalina.out'")
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m ----------------------------\033[0m"
+	print"\033[1;32;40m 查看扩展的30套Tomcat日志完毕\033[0m"
+	print"\033[1;33;40m ----------------------------\033[0m"
+	print"\033[1;33;40m                                       \033[0m"
+	
+elif nu == '12':
+	os.system("ssh updata@10.34.200.211 '/home/weixin-yewu/updata/killall-weixin-tomcat.sh'")
+	print"\033[1;33;40m                                          \033[0m"
+	print"\033[1;33;40m -------------------\033[0m"
+	print"\033[1;32;40m  缩集群到->10套完毕\033[0m"
+	print"\033[1;33;40m -------------------\033[0m"
+	print"\033[1;33;40m                                          \033[0m"
+		
+elif nu == '13':
+	print"\033[1;33;40m ------------\033[0m"
+	print"\033[1;32;40m 程序已经退出 \033[0m"
+	print"\033[1;33;40m ------------\033[0m"
+	pass
+
+else:
+	pass
